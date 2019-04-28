@@ -1,9 +1,9 @@
 <div>
-  <button mat-button id='start'>Start</button>
-  <button mat-button id='stop'>Stop</button>
+  <button mat-button (click)="req()">Start/Stop</button>
 </div>
 <mat-accordion multi="true">
-  <mat-expansion-panel id="tempo-panel" (opened)="panelOpenState = true" (closed)="panelOpenState = false" style="justify-content: center">
+  <mat-expansion-panel id="tempo-panel" (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+    style="justify-content: center">
     <mat-expansion-panel-header>
       <mat-panel-title>
         Tempo
@@ -12,30 +12,9 @@
         {{panelOpenState ? '' : 95}}
       </mat-panel-description>
     </mat-expansion-panel-header>
-
-    <button mat-button>
-      <--</button> <button mat-button>
-        <-</button> <button mat-button>
-          <</button> 95 <button mat-button>>
-    </button>
-    <button mat-button>-></button>
-    <button mat-button>--></button>
-    <mat-divider></mat-divider>
-
-    <div width=50%>
-      slip<br>
-      <button mat-button>
-        <</button> <button mat-button>>
-      </button>
-    </div>
-
-    <div width=50%>
-      beat division<br>
-      <button mat-button>
-        <</button> 1 <button mat-button>>
-      </button>
-    </div>
+    <app-tempo></app-tempo>
   </mat-expansion-panel>
+  <!-- Color Shit -->
   <mat-expansion-panel id="color-panel" (opened)="colorOpen = true" (closed)="colorOpen = false">
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -45,14 +24,10 @@
         {{colorOpen ? '' : 'Colors'}}
       </mat-panel-description>
     </mat-expansion-panel-header>
-
-    <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let color of colors; index as i; trackBy: trackByFn" cdkDrag>
-        {{color}}<button mat-button (click)="remove(i)">-</button>
-      </div>
-    </div>
-  
+    <app-color>
+    </app-color>
   </mat-expansion-panel>
+
   <mat-expansion-panel id="light-panel" (opened)="lightOpen = true" (closed)="lightOpen = false">
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -61,9 +36,6 @@
       <mat-panel-description>
       </mat-panel-description>
     </mat-expansion-panel-header>
-    Brightness
-    <mat-slider thumbLabel id='brightness' min="1" max="100" step="5" value="100"></mat-slider>
-    Saturation
-    <mat-slider thumbLabel id='saturation' min="1" max="100" step="5" value="100"></mat-slider>
+    <app-light></app-light>
   </mat-expansion-panel>
 </mat-accordion>

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { ColorService } from './color.service';
+import { toBase64String } from '@angular/compiler/src/output/source_map';
 
 @Component({
   selector: 'app-root',
@@ -7,24 +9,10 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  constructor(private colorService: ColorService) { }
   title = 'BulbController';
-  colors = [
-    'Episode I - The Phantom Menace',
-    'Episode II - Attack of the Clones',
-    'Episode III - Revenge of the Sith',
-    'Episode IV - A New Hope',
-    'Episode V - The Empire Strikes Back',
-    'Episode VI - Return of the Jedi',
-    'Episode VII - The Force Awakens',
-    'Episode VIII - The Last Jedi'
-  ];
 
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.colors, event.previousIndex, event.currentIndex);
-  }
-
-  remove(i: number) {
-    console.log(i)
-    alert(this.colors[i])
+  req(): any {
+    this.colorService.submit()
   }
 }

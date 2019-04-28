@@ -1,0 +1,19 @@
+<table>
+  <tr>
+    <td>
+      <mat-radio-group id='brightness' (change)="setBrightness()" aria-label="Brightness" [(ngModel)]="brightness" checked="true">
+        <mat-radio-button [value]="100">High</mat-radio-button><br>
+        <mat-radio-button [value]="40">Mid</mat-radio-button><br>
+        <mat-radio-button [value]="10">Low</mat-radio-button><br>
+      </mat-radio-group>
+    </td>
+    <td>
+      <mat-checkbox checked="true" id="saturation" (change)="setSaturation()" [(ngModel)]="colorOn">No Color</mat-checkbox>
+    </td>
+    <td>
+      Slide Time<br>
+      <mat-slider id='slide' (change)="setSlide()" [(ngModel)]="slide" min="0" max="16" step="1" value="0">
+      </mat-slider>
+    </td>
+  </tr>
+</table>

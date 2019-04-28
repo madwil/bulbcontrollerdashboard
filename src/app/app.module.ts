@@ -12,8 +12,9 @@ import { ColorComponent } from './color/color.component';
 
 // mine
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MatButtonModule, MatInputModule, MatExpansionModule, MatDividerModule, MatSliderModule } from '@angular/material';
+import { MatButtonModule, MatInputModule, MatExpansionModule, MatDividerModule, MatSliderModule, MatTableModule } from '@angular/material';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -29,7 +30,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule, MatButtonModule, MatInputModule, MatExpansionModule, MatDividerModule, ColorPickerModule, MatSliderModule, 
+    AppRoutingModule, MatTableModule, DragDropModule, MatButtonModule, MatInputModule, MatExpansionModule, MatDividerModule, ColorPickerModule, MatSliderModule, 
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true }

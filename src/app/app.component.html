@@ -45,6 +45,13 @@
         {{colorOpen ? '' : 'Colors'}}
       </mat-panel-description>
     </mat-expansion-panel-header>
+
+    <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let color of colors; index as i; trackBy: trackByFn" cdkDrag>
+        {{color}}<button mat-button (click)="remove(i)">-</button>
+      </div>
+    </div>
+  
   </mat-expansion-panel>
   <mat-expansion-panel id="light-panel" (opened)="lightOpen = true" (closed)="lightOpen = false">
     <mat-expansion-panel-header>

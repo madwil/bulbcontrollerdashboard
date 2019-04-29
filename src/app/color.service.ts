@@ -55,44 +55,13 @@ export class ColorService {
 
   submit () {
     this.getColorsArray()
-    // var requestString =
-    // {
-    //   Hue_check: true,
-    //   hue: 150,
-    //   sat: String(this.saturation),
-    //   divisions: 2,
-    //   separation: 0,
-    //   brightness: String(this.brightness),
-    //   bpm: String(this.tempo),
-    //   beat: String(this.split),
-    //   slide: String(this.slide),
-    //   func: 'start',
-    //   colorlist: this.colorlist
-    // }
-    //Hue_check=true&hue=150&sat=100&divisions=2&separation=1&brightness=100&bpm=90&beat=4&slide=0&func=start&colorlist=0,160
     var requestString = "Hue_check=true&hue=150&sat="+String(this.saturation)+"&divisions=2&separation=0&brightness="+String(this.brightness)+"&bpm="+String(this.tempo)+"&beat="+String(this.split)+"&slide="+String(this.slide)+"&func=start&colorlist="+this.colorlist
     console.log(requestString)
     var request = new XMLHttpRequest();
-    request.open('POST', 'http://localhost:3000/', true);
+    request.open('POST', 'http://ec2-3-89-115-95.compute-1.amazonaws.com:3000/', true);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
     request.send(requestString.toString());
   }
-
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.message);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
-    }
-    // return an observable with a user-facing error message
-    return throwError(
-      'Something bad happened; please try again later.');
-  };
 
   shiftSplit(i: number) {
     this.split += i;
@@ -109,12 +78,7 @@ export class ColorService {
     console.log(this.tempo)
   }
 
-  //{"Hue_check":"true","hue":"150","sat":"100","divisions":"2","separation":"1","brightness":"100","bpm":"90","beat":"4","slide":"0","func":"start","colorlist":"0,160"}
-
-  //{"Hue_check":"true","hue":"150","sat":"100","divisions":"2","separation":"0","brightness":"100","bpm":"95","beat":"1","slide":"0","func":"start","colorlist":"0,45,90,135,180"}
-  //Hue_check=true&hue=150&sat=100&divisions=2&separation=1&brightness=100&bpm=90&beat=4&slide=0&func=start&colorlist=0,160
-
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   getColors(): any {
     const colorsObservable = new Observable(observer => {

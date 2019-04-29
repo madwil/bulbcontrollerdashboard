@@ -2,7 +2,7 @@
   <button mat-button (click)="req()">Start/Stop</button>
 </div>
 <mat-accordion multi="true">
-  <mat-expansion-panel id="tempo-panel" (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+  <mat-expansion-panel expanded="true" id="tempo-panel" (opened)="panelOpenState = true" (closed)="panelOpenState = false"
     style="justify-content: center">
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -15,7 +15,7 @@
     <app-tempo></app-tempo>
   </mat-expansion-panel>
   <!-- Color Shit -->
-  <mat-expansion-panel id="color-panel" (opened)="colorOpen = true" (closed)="colorOpen = false">
+  <mat-expansion-panel expanded="true" id="color-panel" (opened)="colorOpen = true" (closed)="colorOpen = false">
     <mat-expansion-panel-header>
       <mat-panel-title>
         Color
@@ -28,7 +28,7 @@
     </app-color>
   </mat-expansion-panel>
 
-  <mat-expansion-panel id="light-panel" (opened)="lightOpen = true" (closed)="lightOpen = false">
+  <mat-expansion-panel expanded="true" id="light-panel" (opened)="lightOpen = true" (closed)="lightOpen = false">
     <mat-expansion-panel-header>
       <mat-panel-title>
         Light Controls

@@ -14,11 +14,11 @@ const httpOptions = {
 export class ColorService {
 
   colors = [
-    'hsla(0, 100%, 50%)',
-    'hsla(45, 100%, 50%)',
-    'hsla(90, 100%, 50%)',
-    'hsla(135, 100%, 50%)',
-    'hsla(180, 100%, 50%)'
+    'hsl(0, 100%, 50%)',
+    'hsl(45, 100%, 50%)',
+    'hsl(90, 100%, 50%)',
+    'hsl(135, 100%, 50%)',
+    'hsl(180, 100%, 50%)'
   ];
   split = 4;
   tempo = 95;
@@ -101,12 +101,13 @@ export class ColorService {
   }
 
   getColorsArray(): any {
+    console.log(this.colors)
     this.colorlist = ""
     this.colors.forEach((value) => {
-      this.colorlist = this.colorlist + "," + String(value.split("hsla(")[1].split(',')[0])
+      this.colorlist = this.colorlist + "," + String(value.split("hsl(")[1].split(',')[0])
     })
     this.colorlist = this.colorlist.substring(1)
-    // console.log(this.colorlist)
+    console.log(this.colorlist)
   }
 
   swap(i: number, j: number) {
@@ -123,7 +124,7 @@ export class ColorService {
   }
 
   add(i: number): any {
-    this.colors.push('hsla(' + i % 360 + ', 100%, 50%)')
+    this.colors.push('hsl(' + i % 360 + ', 100%, 50%)')
   }
 
   update(i: number, value: string) {

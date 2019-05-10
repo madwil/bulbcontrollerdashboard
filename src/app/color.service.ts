@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { catchError, retry } from 'rxjs/operators';
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json'
+    'Content-Type': 'application/json'
   })
 };
 
@@ -53,9 +53,14 @@ export class ColorService {
   //   );
   // }
 
-  submit () {
+  submit(style: number) {
     this.getColorsArray()
-    var requestString = "Hue_check=true&hue=150&sat="+String(this.saturation)+"&divisions=2&separation=0&brightness="+String(this.brightness)+"&bpm="+String(this.tempo)+"&beat="+String(this.split)+"&slide="+String(this.slide)+"&func=start&colorlist="+this.colorlist
+    if (style == 0) {
+      var requestString = "Hue_check=true&hue=150&sat=" + String(this.saturation) + "&divisions=2&separation=0&brightness=" + String(this.brightness) + "&bpm=" + String(this.tempo) + "&beat=" + String(this.split) + "&slide=" + String(this.slide) + "&func=start&colorlist=" + this.colorlist
+    }
+    else if (style == 1) {
+      var requestString = "Hue_check=true&hue=150&sat=0&divisions=2&separation=0&brightness=0&bpm=" + String(this.tempo) + "&beat=" + String(this.split) + "&slide=" + String(this.slide) + "&func=start&colorlist=" + this.colorlist
+    }
     console.log(requestString)
     var request = new XMLHttpRequest();
     request.open('POST', 'http://ec2-3-89-115-95.compute-1.amazonaws.com:3000/', true);

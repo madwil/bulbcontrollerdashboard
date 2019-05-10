@@ -12,7 +12,7 @@ export class AppComponent {
   constructor(private colorService: ColorService) { }
   title = 'BulbController';
 
-  req(): any {
-    this.colorService.submit()
+  req(i: number): any {
+    this.colorService.submit(i)
   }
 }

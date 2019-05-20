@@ -1,7 +1,7 @@
 <button mat-button (click)="add(300)">+</button>
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-  <div class="example-box" *ngFor="let colorIn of colors; index as i; trackBy: trackByFn" cdkDrag>
-    <input id="{{i}}" [style.background]="colorIn" [cpAlphaChannel]="'disabled'" [cpOutputFormat]="'hsla'"
+  <div class="example-box" style="text-align: left" *ngFor="let colorIn of colors; index as i; trackBy: trackByFn" cdkDrag>
+    <input id="{{i}}" readonly="true" [style.background]="colorIn" [cpAlphaChannel]="'disabled'" [cpOutputFormat]="'hsla'"
       [(colorPicker)]="colorIn" [cpCloseClickOutside]="true" [cpSaveClickOutside]="true" (colorPickerChange)="color=$event;update(i, $event)"/>
     <button mat-button (click)="remove(i)">-</button>
   </div>

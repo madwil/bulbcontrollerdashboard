@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, retry } from 'rxjs/operators';
+import { ArrayDataSource } from '@angular/cdk/collections';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
@@ -26,32 +27,29 @@ export class ColorService {
   brightness = 100
   saturation = 100
   slide = 0;
+  sleep = false;
+  sleepTime = null;
 
-  // submit (): Observable<JSON> {
-  //   this.getColorsArray()
-  //   var requestString =
-  //   {
-  //     Hue_check: true,
-  //     hue: 150,
-  //     sat: String(this.saturation),
-  //     divisions: 2,
-  //     separation: 0,
-  //     brightness: String(this.brightness),
-  //     bpm: String(this.tempo),
-  //     beat: String(this.split),
-  //     slide: String(this.slide),
-  //     func: 'start',
-  //     colorlist: this.colorlist
-  //   }
-  //   console.log(requestString)
-  //   // var request = new XMLHttpRequest();
-  //   // request.open('POST', 'http://localhost:3000/', true);
-  //   // request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-  //   // request.send(requestString.toString());
-  //   return this.http.post<JSON>("http://localhost:3000/", requestString, httpOptions).pipe(
-  //     catchError(this.handleError)
-  //   );
-  // }
+  private interval;
+
+  startSleepTimer() {
+    this.sleep = true;
+    this.sleepTime = new Date()
+    this.sleepTime.setMinutes(this.sleepTime.getSeconds() + 30)
+    this.interval = setInterval(() => {
+      this.checkSleepTimer();
+    }, 1000);
+  }
+
+  checkSleepTimer() {
+    if (!this.sleep) {
+      var timeNow = new Date()
+      if (timeNow > this.sleepTime)
+      {
+        this.submit(1)
+      }
+    }
+  }
 
   submit(style: number) {
     this.getColorsArray()
@@ -59,7 +57,7 @@ export class ColorService {
       var requestString = "Hue_check=true&hue=150&sat=" + String(this.saturation) + "&divisions=2&separation=0&brightness=" + String(this.brightness) + "&bpm=" + String(this.tempo) + "&beat=" + String(this.split) + "&slide=" + String(this.slide) + "&func=start&colorlist=" + this.colorlist
     }
     else if (style == 1) {
-      var requestString = "Hue_check=true&hue=150&sat=0&divisions=2&separation=0&brightness=0&bpm=" + String(this.tempo) + "&beat=" + String(this.split) + "&slide=" + String(this.slide) + "&func=start&colorlist=" + this.colorlist
+      var requestString = "Hue_check=true&hue=150&sat=0&divisions=2&separation=0&brightness=0&bpm=" + String(this.tempo) + "&beat=" + String(this.split) + "&slide=" + String(this.slide) + "&func=stop&colorlist=" + this.colorlist
     }
     console.log(requestString)
     var request = new XMLHttpRequest();
@@ -101,7 +99,6 @@ export class ColorService {
         observer.next(this.tempo);
       }, 1000);
     });
-
     return tempoObservable;
   }
 

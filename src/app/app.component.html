@@ -1,7 +1,3 @@
-<div>
-  <button mat-button (click)="req(0)">Start/Stop</button>
-  <button mat-button (click)="req(1)">Off</button>
-</div>
 <mat-accordion multi="true">
   <mat-expansion-panel expanded="true" id="tempo-panel" (opened)="panelOpenState = true" (closed)="panelOpenState = false"
     style="justify-content: center">
@@ -40,3 +36,8 @@
     <app-light></app-light>
   </mat-expansion-panel>
 </mat-accordion>
+<div>
+  <button mat-button (click)="req(0)">Start/Stop</button>
+  <button mat-button (click)="req(1)">Off</button>
+  <button mat-button (click)="req(2)">Sleep</button>
+</div>

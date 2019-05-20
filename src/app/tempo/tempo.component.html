@@ -1,14 +1,8 @@
-<button (click)="shiftBPM(-10)" mat-button>
-  <--</button> 
-  <button (click)="shiftBPM(-5)" mat-button>
-    <-</button> 
-    <button (click)="shiftBPM(-1)" mat-button>
-      <</button>
-      {{tempo}} 
-      <button (click)="shiftBPM(1)" mat-button>>
+<button (click)="shiftBPM(-5)" mat-button>
+  <-</button> <button (click)="shiftBPM(-1)" mat-button>
+    <</button> {{tempo}} <button (click)="shiftBPM(1)" mat-button>>
 </button>
 <button (click)="shiftBPM(5)" mat-button>-></button>
-<button (click)="shiftBPM(10)" mat-button>--></button>
 <mat-divider></mat-divider>
 
 <!-- <div width=50%>
@@ -20,7 +14,7 @@
 
 <div>
   beat division<br>
-  <button mat-button (click)="shiftSplit(-1)"><</button> 
-  {{split}}
-  <button mat-button (click)="shiftSplit(1)">></button>
+  <button mat-button (click)="shiftSplit(-1)">
+    <</button> {{split}} <button mat-button (click)="shiftSplit(1)">>
+  </button>
 </div>

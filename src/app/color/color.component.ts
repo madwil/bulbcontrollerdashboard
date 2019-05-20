@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ColorService} from '../color.service';
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { ColorService } from '../color.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-color',
@@ -20,8 +20,13 @@ export class ColorComponent implements OnInit {
   }
 
   remove(i: number) {
-    console.log("Removed " + i)
-    this.colorService.remove(i)
+    if (this.colorService.colors.length > 1) {
+      console.log("Removed " + i)
+      this.colorService.remove(i)
+    }
+    else {
+      alert("Cannot remove the last color!")
+    }
   }
 
   add(i: number) {

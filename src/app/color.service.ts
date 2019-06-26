@@ -59,6 +59,21 @@ export class ColorService {
     else if (style == 1) {
       var requestString = "Hue_check=true&hue=150&sat=0&divisions=2&separation=0&brightness=0&bpm=" + String(this.tempo) + "&beat=" + String(this.split) + "&slide=" + String(this.slide) + "&func=stop&colorlist=" + this.colorlist
     }
+    else if (style == 2) {
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.open( "GET", 'http://ec2-3-89-115-95.compute-1.amazonaws.com:3000/power', false ); // false for synchronous request
+      xmlHttp.send( null );
+      return xmlHttp.responseText;
+    }
+    else if (style == 3) {
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.open( "GET", 'http://ec2-3-89-115-95.compute-1.amazonaws.com:3000/color', false ); // false for synchronous request
+      xmlHttp.send( null );
+      return xmlHttp.responseText;      
+    }
+    else {
+      return;
+    }
     console.log(requestString)
     var request = new XMLHttpRequest();
     request.open('POST', 'http://ec2-3-89-115-95.compute-1.amazonaws.com:3000/', true);
